@@ -5,9 +5,9 @@ import com.chimichurris.server.models.entities.User;
 public class TokenDTO {
 	private String token;
 
-	private User user;
+	private UserDTO user;
 
-	public TokenDTO(String token, User user) {
+	public TokenDTO(String token, UserDTO user) {
 		super();
 		this.token = token;
 		this.user = user;
@@ -25,11 +25,11 @@ public class TokenDTO {
 		this.token = token;
 	}
 
-	public User getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 }

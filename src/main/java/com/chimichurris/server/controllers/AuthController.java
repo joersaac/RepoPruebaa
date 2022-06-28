@@ -58,7 +58,7 @@ public class AuthController {
 				);
 		} catch (Exception e) {
 			return new ResponseEntity<>(
-						new MessageDTO(e.getMessage()),
+						new MessageDTO("Error interno"),
 						HttpStatus.INTERNAL_SERVER_ERROR
 					);
 		}
@@ -74,22 +74,35 @@ public class AuthController {
 						HttpStatus.BAD_REQUEST
 					);
 			}
-			
-			User user = userService.findOneByIdentifer(loginInfo.getIdentifier());
-			
-			if(!userService.comparePassword(user, loginInfo.getPassword())) {
-				return new ResponseEntity<>(
-						new TokenDTO(),
-						HttpStatus.UNAUTHORIZED
+			User user;
+			if(loginInfo.getEmail()!=null){
+				user = userService.findOneByIdentifer(loginInfo.getEmail());
+				if(user == null) {
+					return new ResponseEntity<>(
+							new TokenDTO(),
+							HttpStatus.UNAUTHORIZED
 					);
+				}
 			}
-			
+			else {
+				user = userService.findOneByIdentifer(loginInfo.getIdentifier());
+
+				if (!userService.comparePassword(user, loginInfo.getPassword())) {
+					return new ResponseEntity<>(
+							new TokenDTO(),
+							HttpStatus.UNAUTHORIZED
+					);
+				}
+			}
 			final String token = tokenManager.generateJwtToken(user.getUsername());
 			
-			userService.insertToken(user, token); 
+			userService.insertToken(user, token);
+
+			UserDTO sendUser = new UserDTO(user.getId(), user.getUsername(), user.getName(), user.getRol(), user.getImg(),
+					user.getInt_hour(), user.getExt_hour());
 			
 			return new ResponseEntity<>(
-						new TokenDTO(token, user),
+						new TokenDTO(token, sendUser),
 						HttpStatus.OK
 					);
 			

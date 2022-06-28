@@ -25,6 +25,8 @@ public class UserInfo {
 	@Size(min = 4, max = 32)
 	private String rol;
 
+	private String img;
+
 	public UserInfo() {
 		super();
 	}
@@ -34,13 +36,15 @@ public class UserInfo {
 					@NotBlank String name,
 					@NotBlank @Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$") String email,
 					@NotBlank @Size(min = 8, max = 32) @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,32}$") String password,
-					String rol) {
+					String rol,
+					String img) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.rol = rol;
 		this.name = name;
+		this.img = img;
 	}
 
 
@@ -82,5 +86,13 @@ public class UserInfo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }
