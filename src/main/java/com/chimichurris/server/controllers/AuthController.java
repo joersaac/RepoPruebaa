@@ -58,7 +58,7 @@ public class AuthController {
 				);
 		} catch (Exception e) {
 			return new ResponseEntity<>(
-						new MessageDTO("Error interno"),
+						new MessageDTO(e.getMessage()),
 						HttpStatus.INTERNAL_SERVER_ERROR
 					);
 		}
