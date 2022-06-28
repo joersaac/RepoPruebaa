@@ -148,7 +148,7 @@ public class RequestHoursController {
     }
 
     @GetMapping("/view")
-    private ResponseEntity<Page<Hour_Request>> viewProjects(@RequestBody @Valid PageableDTO info, BindingResult result){
+    private ResponseEntity<Page<Hour_Request>> viewProjects(@Valid PageableDTO info, BindingResult result){
         if(result.hasErrors()) {
             return new ResponseEntity<>(
                     null,

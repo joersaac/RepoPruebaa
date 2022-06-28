@@ -134,7 +134,7 @@ public class ProjectController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/view/{option}")
     private ResponseEntity<Page<Project>> viewProjects(@PathVariable String option,
-                                                       @RequestBody @Valid PageableDTO info, BindingResult result){
+                                                       @Valid PageableDTO info, BindingResult result){
         if(result.hasErrors()) {
             return new ResponseEntity<>(
                     null,
