@@ -50,7 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Page<Project> findByType(String hourType, PageableDTO info) {
         PageRequest request = PageRequest
-                .of(info.getPage(), info.getLimit(),Sort.by("name").ascending());
+                .of(info.getPage(), info.getLimit(),Sort.by("id").descending());
 
         return projectRepository
                 .findByHourType(hourType,request);
@@ -59,7 +59,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Page<Project> findAll(PageableDTO info) {
         PageRequest request = PageRequest
-                .of(info.getPage(), info.getLimit(),Sort.by("name").ascending());
+                .of(info.getPage(), info.getLimit(),Sort.by("id").descending());
 
         return projectRepository
                 .findAll(request);
@@ -95,7 +95,7 @@ public class ProjectServiceImpl implements ProjectService {
             enrolledProjects.add(projectRepository.findOneById(inscription.getIdProject().getId()).getId());
         });
         PageRequest request = PageRequest
-                .of(info.getPage(), info.getLimit(),Sort.by("name").ascending());
+                .of(info.getPage(), info.getLimit(),Sort.by("id").descending());
 
         return projectRepository
                 .findByUser(enrolledProjects,request);
