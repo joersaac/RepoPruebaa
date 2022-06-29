@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService {
 		List<UserListByRolDTO> users = new ArrayList<>();
 		List<User> temporalUserList = userRepository.findByRol(rol);
 		temporalUserList.forEach((user)->{
-			users.add(new UserListByRolDTO(user.getId(),user.getUsername(),user.getImg()));
+			users.add(new UserListByRolDTO(user.getId(),user.getUsername(),user.getImg(),user.getName()));
 		});
 		return users;
 	}
