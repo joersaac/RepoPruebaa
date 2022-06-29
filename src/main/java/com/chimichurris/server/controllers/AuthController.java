@@ -99,7 +99,7 @@ public class AuthController {
 			userService.insertToken(user, token);
 
 			UserDTO sendUser = new UserDTO(user.getId(), user.getUsername(), user.getName(), user.getRol(), user.getImg(),
-					user.getInt_hour(), user.getExt_hour());
+					user.getInt_hour(), user.getExt_hour(),user.getUnreadmessages());
 			
 			return new ResponseEntity<>(
 						new TokenDTO(token, sendUser),

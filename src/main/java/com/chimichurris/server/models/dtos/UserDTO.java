@@ -20,18 +20,21 @@ public class UserDTO {
 
     private int ExternalHours;
 
+    private int unreadMessages;
+
     public UserDTO() {
         super();
     }
 
-    public UserDTO(long id, String username, String name, String rol, String img, int internalHours, int externalHours) {
+    public UserDTO(long id, String username, String name, String rol, String img, int internalHours, int externalHours, int unreadMessages) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.rol = rol;
         this.img = img;
-        InternalHours = internalHours;
-        ExternalHours = externalHours;
+        this.InternalHours = internalHours;
+        this.ExternalHours = externalHours;
+        this.unreadMessages = unreadMessages;
     }
 
     public long getId() {
@@ -88,5 +91,13 @@ public class UserDTO {
 
     public void setExternalHours(int externalHours) {
         ExternalHours = externalHours;
+    }
+
+    public int getUnreadMessages() {
+        return unreadMessages;
+    }
+
+    public void setUnreadMessages(int unreadMessages) {
+        this.unreadMessages = unreadMessages;
     }
 }
