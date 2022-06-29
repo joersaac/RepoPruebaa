@@ -28,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
             List<Message> messages = messageRepository.viewMessages(sender, receiver);
             List<ChatroomMessagesDTO> viewMessages = new ArrayList<>();
             messages.forEach((message -> {
-                if(!message.isState()){
+                if(!message.isState() && message.getSender()!=sender){
                     message.setState(true);
                     messageRepository.save(message);
                     sender.setUnreadmessages(sender.getUnreadmessages()-1);
